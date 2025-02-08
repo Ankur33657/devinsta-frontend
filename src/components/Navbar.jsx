@@ -1,10 +1,21 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const Logout = () => {
+    alert("Logout success");
+    navigate("/login");
+  };
+
   return (
     <>
-      <div className="navbar bg-base-300">
+      <div className="navbar bg-gray-600 sticky top-0 z-20">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <Link to="/" className="btn btn-ghost text-xl text-white">
+            daisyUI
+          </Link>
         </div>
         <div className="flex-none gap-2">
           <div className="dropdown dropdown-end">
@@ -22,19 +33,20 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-gray-900 rounded-box z-[1] mt-3 w-52 p-2 shadow text-white"
             >
               <li>
-                <a className="justify-between">
+                <Link to="/profile" className="justify-between">
                   Profile
-                  <span className="badge">New</span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a>Settings</a>
+                <Link to="profile/edit">Settings</Link>
               </li>
               <li>
-                <a>Logout</a>
+                <button onClick={Logout} className="w-full text-left">
+                  Logout
+                </button>
               </li>
             </ul>
           </div>
@@ -43,4 +55,5 @@ const Navbar = () => {
     </>
   );
 };
+
 export default Navbar;
