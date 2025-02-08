@@ -4,7 +4,7 @@ import Image2 from "../assets/image2.png";
 import Image3 from "../assets/image3.png";
 import Image4 from "../assets/image4.png";
 
-const Connection = () => {
+const Pending = () => {
   const users = [
     {
       username: "rashathadani",
@@ -55,7 +55,9 @@ const Connection = () => {
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-900 py-3">
       <div className="w-full max-w-md bg-gray-800 shadow-lg rounded-lg p-4">
-        <h1>Connections</h1>
+        <h1 className="text-gray-200 text-lg font-semibold mb-3">
+          Pending Requests
+        </h1>
         {users.map((user, index) => (
           <div
             key={index}
@@ -85,9 +87,11 @@ const Connection = () => {
               </div>
             </div>
 
-            {/* Message Button */}
-
-            <button className="btn btn-secondary btn-sm">Message</button>
+            {/* Buttons Section */}
+            <div className="flex gap-3">
+              <button className="btn btn-success btn-xs">Accept</button>
+              <button className="btn btn-error btn-xs">Reject</button>
+            </div>
           </div>
         ))}
       </div>
@@ -95,4 +99,4 @@ const Connection = () => {
   );
 };
 
-export default Connection;
+export default Pending;

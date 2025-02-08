@@ -16,16 +16,14 @@ const Profile = () => {
           </div>
         </div>
         <div className="flex justify-center gap-6 mt-4">
-          <div className="text-center">
+          <Link to="/pending" className="text-center">
             <p className="text-lg font-bold">100</p>
-            <p className="text-gray-400">Pending</p>
-          </div>
-          <div className="text-center">
+            <a className="text-gray-400">Pending</a>
+          </Link>
+          <Link to="/connection" className="text-center">
             <p className="text-lg font-bold">150</p>
-            <Link to="/connection" className="text-gray-400">
-              Connections
-            </Link>
-          </div>
+            <a className="text-gray-400">Connections</a>
+          </Link>
         </div>
       </div>
 
@@ -96,6 +94,9 @@ const Profile = () => {
               I am a passionate developer and traveler who loves exploring new
               things.
             </div>
+            <Link to="/profile/edit" className="flex m-2 p-2">
+              <button className="btn btn-success btn-sm">Edit</button>
+            </Link>
           </div>
         </div>
       </div>

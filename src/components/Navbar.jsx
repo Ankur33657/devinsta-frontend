@@ -41,7 +41,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <Link to="profile/edit">Settings</Link>
+                <Link to="#">Settings</Link>
               </li>
               <li>
                 <button onClick={Logout} className="w-full text-left">
