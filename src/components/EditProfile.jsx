@@ -3,7 +3,7 @@ import React from "react";
 const EditProfile = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-900">
-      <div className="bg-gray-800 shadow-xl rounded-lg p-8 w-full max-w-lg">
+      <div className="bg-gray-800 shadow-xl rounded-lg p-8 w-full max-w-lg text-gray-700">
         <p className="font-semibold text-center text-xl text-white mb-6">
           Edit Profile
         </p>
@@ -11,11 +11,11 @@ const EditProfile = () => {
         <div className="space-y-4">
           {/* First Name */}
           <div>
-            <label className="text-gray-400 block mb-1">First Name</label>
+            <label className="text-gray-400 block mb-1 ">First Name</label>
             <input
+              className="input input-bordered w-full bg-gray-700 text-gray-900 p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
               type="text"
               placeholder="John"
-              className="input input-bordered w-full bg-gray-700 text-white p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
             />
           </div>
 
@@ -79,8 +79,8 @@ const EditProfile = () => {
 
           {/* Submit Button */}
           <div className="m-3 card-actions justify-center">
-              <button className="btn btn-primary w-full">Save</button>
-            </div>
+            <button className="btn btn-primary w-full">Save</button>
+          </div>
         </div>
       </div>
     </div>

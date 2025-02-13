@@ -4,11 +4,23 @@ import { Link, useNavigate } from "react-router-dom";
 const Navbar = () => {
   const navigate = useNavigate();
 
-  const Logout = () => {
-    alert("Logout success");
-    navigate("/login");
+  const Logout = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/api/logout", {
+        method: "GET",
+        credentials: "include", // Necessary to send cookies
+      });
+  
+      if (res.ok) {
+        navigate("/login");
+      } else {
+        console.log("Logout failed:", await res.text());
+      }
+    } catch (err) {
+      console.log("Error:", err.message);
+    }
   };
-
+  
   return (
     <>
       <div className="navbar bg-gray-600 sticky top-0 z-20">
