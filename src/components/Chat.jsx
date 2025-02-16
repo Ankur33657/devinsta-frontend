@@ -1,5 +1,30 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { Auth } from "../assets/LoginUser";
+import CreateSocketConnection from "../assets/Socket";
 const Chat = () => {
+  const { targetuserId } = useParams();
+
+  const [message, setMessage] = useState("");
+  const [msg, setMsg] = useState("");
+  const user = useContext(Auth);
+  const UserId = user._id;
+
+  useEffect(() => {
+    const socket = CreateSocketConnection();
+    socket.emit("joinchat", { targetuserId, UserId });
+
+    socket.on("messagerecieve", ({ message }) => {
+      setMsg(message);
+    });
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
+  const handleChat = () => {
+    const socket = CreateSocketConnection();
+    socket.emit("sendmessage", { targetuserId, UserId, message });
+  };
   return (
     <>
       <div className="w-full max-w-xl mx-auto mt-10 bg-white shadow-xl rounded-lg p-6">
@@ -11,49 +36,26 @@ const Chat = () => {
         </div>
 
         <div className="chat chat-start">
-          <div className="chat-image avatar">
-            <div className="w-10 rounded-full">
-              <img
-                alt="Tailwind CSS chat bubble component"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-              />
-            </div>
-          </div>
           <div className="chat-header">
             Obi-Wan Kenobi
             <time className="text-xs opacity-50">12:45</time>
           </div>
-          <div className="chat-bubble">You were the Chosen One!</div>
+          <div className="chat-bubble">{msg}</div>
           <div className="chat-footer opacity-50">Delivered</div>
         </div>
-        <div className="chat chat-end">
-          <div className="chat-image avatar">
-            <div className="w-10 rounded-full">
-              <img
-                alt="Tailwind CSS chat bubble component"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-              />
-            </div>
-          </div>
-          <div className="chat-header">
-            Anakin
-            <time className="text-xs opacity-50">12:46</time>
-          </div>
-          <div className="chat-bubble">I hate you!</div>
-          <div className="chat-footer opacity-50">Seen at 12:46</div>
-        </div>
-
         <div className="flex text-gray-900 items-center space-x-3 m-2 p-2">
           <label className="form-control w-full max-w-xs">
-          
             <input
               type="text"
               placeholder="Type here"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
               className="input input-bordered w-full max-w-xs"
             />
-           
           </label>
-          <button className=" m-2 p-2 btn btn-success">Send</button>
+          <button onClick={handleChat} className="m-2 p-2 btn btn-success">
+            Send
+          </button>
         </div>
       </div>
     </>

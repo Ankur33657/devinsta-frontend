@@ -6,6 +6,7 @@ import Image4 from "../assets/image4.png";
 import { Link } from "react-router-dom";
 
 const Connection = () => {
+  let userId;
   const [users, setUsers] = useState(null);
   useEffect(() => {
     fetchData();
@@ -59,14 +60,12 @@ const Connection = () => {
                   <span className="text-gray-400 text-sm">{user.name}</span>
                 </div>
               </div>
-
               {/* Message Button */}
-
               <Link
-                to={"/chat/" + user._id}
+                to={`/chat/${user._id}`} // Send user._id as part of the URL
                 className="btn btn-secondary btn-sm"
               >
-                Message
+                message
               </Link>
             </div>
           ))}
