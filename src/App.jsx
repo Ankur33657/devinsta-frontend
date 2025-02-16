@@ -7,7 +7,8 @@ import Profile from "./components/Profile";
 import EditProfile from "./components/EditProfile";
 import Mainbody from "./components/Mainbody";
 import Connection from "./components/Connection";
-import Pending from "./components/pending";
+import Pending from "./components/Pending";
+import Chat from "./components/Chat";
 function App() {
   return (
     <BrowserRouter basename="/">
@@ -20,6 +21,7 @@ function App() {
           <Route path="/profile/edit" element={<EditProfile />} />
           <Route path="/connection" element={<Connection />} />
           <Route path="/pending" element={<Pending />} />
+          <Route path="/chat/:targetuserId" element={<Chat />} />
         </Route>
       </Routes>
     </BrowserRouter>

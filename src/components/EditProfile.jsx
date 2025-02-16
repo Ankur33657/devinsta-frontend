@@ -1,6 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const EditProfile = () => {
+  const location = useLocation();
+  const user = location.state || {};
+  const navigate = useNavigate();
+
+  const [firstName, setFirstName] = useState(user.firstName);
+  const [lastName, setLastName] = useState(user.lastName);
+  const [gender, setGender] = useState(user.gender);
+  const [dob, setDob] = useState(user.dob);
+  const [image1, setImage1] = useState(user.image1);
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImage1(URL.createObjectURL(file));
+    }
+    console.log("File type--", file.type);
+  };
+
+  const handleEdit = async () => {
+    try {
+      const data = {
+        firstName: firstName,
+        lastName: lastName,
+        gender: gender,
+        dob: dob,
+        image1: image1,
+      };
+      const response = await fetch("http://localhost:3000/api/profile/edit", {
+        method: "PATCH",
+        credentials: "include", // Ensures cookies are sent if applicable
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      console.log(data);
+      if (response.ok) {
+        navigate("/profile");
+      } else {
+        console.log("fail");
+      }
+    } catch (error) {
+      console.log("Error hhh");
+    }
+  };
+  console.log(image1);
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-900">
       <div className="bg-gray-800 shadow-xl rounded-lg p-8 w-full max-w-lg text-gray-700">
@@ -14,6 +60,8 @@ const EditProfile = () => {
             <label className="text-gray-400 block mb-1 ">First Name</label>
             <input
               className="input input-bordered w-full bg-gray-700 text-gray-900 p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
               type="text"
               placeholder="John"
             />
@@ -25,6 +73,8 @@ const EditProfile = () => {
             <input
               type="text"
               placeholder="Doe"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
               className="input input-bordered w-full bg-gray-700 text-white p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -32,7 +82,11 @@ const EditProfile = () => {
           {/* Gender */}
           <div>
             <label className="text-gray-400 block mb-1">Gender</label>
-            <select className="select select-bordered w-full bg-gray-700 text-white p-3 rounded-lg focus:ring-2 focus:ring-blue-500">
+            <select
+              value={gender}
+              onChange={(e) => setGender(e.target.value)}
+              className="select select-bordered w-full bg-gray-700 text-white p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
+            >
               <option>Male</option>
               <option>Female</option>
               <option>Other</option>
@@ -44,6 +98,8 @@ const EditProfile = () => {
             <label className="text-gray-400 block mb-1">Date of Birth</label>
             <input
               type="date"
+              value={dob}
+              onChange={(e) => setDob(e.target.value)}
               className="input input-bordered w-full bg-gray-700 text-white p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
             />
           </div>
@@ -77,9 +133,17 @@ const EditProfile = () => {
             ></textarea>
           </div>
 
+          <input
+            type="file"
+            className="file-input file-input-bordered file-input-secondary w-full max-w-xs m-2 p-2"
+            onChange={handleFileChange}
+          />
+
           {/* Submit Button */}
           <div className="m-3 card-actions justify-center">
-            <button className="btn btn-primary w-full">Save</button>
+            <button onClick={handleEdit} className="btn btn-primary w-full">
+              Save
+            </button>
           </div>
         </div>
       </div>
