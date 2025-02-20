@@ -7,6 +7,7 @@ const Signup = () => {
   const [lastName, setLastName] = useState("");
   const [emailId, setEmailId] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const handleSignup = async () => {
     const requestData = {
       firstName: firstName,
@@ -14,7 +15,6 @@ const Signup = () => {
       emailId: emailId,
       password: password,
     };
-    console.log(requestData);
     try {
       const response = await fetch("http://localhost:3000/api/signup", {
         method: "POST",
@@ -23,16 +23,14 @@ const Signup = () => {
         },
         body: JSON.stringify(requestData),
       });
-      console.log(requestData);
       if (!response.ok) {
         throw new Error("User already exited");
       }
 
       const responseData = await response.json();
-      console.log("Success:", responseData);
       navigate("/login");
     } catch (error) {
-      console.error("Error:", error.message);
+      setError("ERROR: Invalid data");
     }
   };
 
@@ -93,11 +91,11 @@ const Signup = () => {
               className="input input-bordered w-full max-w-xs bg-gray-700 text-black"
             />
           </label>
-
+          <p className="text-red-800">{error}</p>
           <div className="m-3 card-actions justify-center">
             <button
               onClick={handleSignup}
-              className="btn btn-active btn-neutral"
+              className="btn btn-active btn-primary"
             >
               Signup
             </button>

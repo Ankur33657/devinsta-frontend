@@ -5,7 +5,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [emailId, setEmail] = useState("test1@gmail.com");
   const [password, setPassword] = useState("Test123@");
-
+  const [error, setError] = useState("");
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -25,7 +25,7 @@ const Login = () => {
 
       navigate("/");
     } catch (err) {
-      console.log("Error:", err.message);
+      setError("ERROR: Invalid Credientials");
     }
   };
 
@@ -61,7 +61,7 @@ const Login = () => {
                 className="input input-bordered w-full max-w-xs bg-gray-700 text-white placeholder-gray-400"
               />
             </label>
-
+            <p className="text-red-800">{error}</p>
             <div className="m-3 card-actions justify-center">
               <button onClick={handleLogin} className="btn btn-primary w-full">
                 Login

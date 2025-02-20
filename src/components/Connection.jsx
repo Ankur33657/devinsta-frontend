@@ -6,7 +6,6 @@ import Image4 from "../assets/image4.png";
 import { Link } from "react-router-dom";
 
 const Connection = () => {
-  let userId;
   const [users, setUsers] = useState(null);
   useEffect(() => {
     fetchData();
@@ -22,6 +21,7 @@ const Connection = () => {
       );
       const json = await res.json();
       setUsers(json);
+      console.log(json);
     } catch (err) {
       console.log(err.message);
     }
@@ -30,7 +30,9 @@ const Connection = () => {
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-900 py-3">
       <div className="w-full max-w-md bg-gray-800 shadow-lg rounded-lg p-4">
-        <h1>Connections</h1>
+        <h1 className="text-gray-200 text-lg font-semibold mb-3">
+          Connections
+        </h1>
         {users &&
           users.map((user, index) => (
             <div

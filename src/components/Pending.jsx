@@ -30,6 +30,7 @@ const Pending = () => {
 
   const handleRequest = async (status, connectionId) => {
     try {
+      console.log(status + " " + connectionId);
       const res = await fetch(
         `http://localhost:3000/api/connection/review/${status}/${connectionId}`,
         {
@@ -37,14 +38,12 @@ const Pending = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ status: status }),
           credentials: "include", // Important for sending cookies
         }
       );
       if (res.ok) {
         console.log("you ___ the response" + status);
-        window.location.reload();
-        navigate("/connection");
+        fetchData();
       } else {
         console.log("error hhhhhh ");
       }

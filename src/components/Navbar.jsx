@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+
 const Navbar = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const navigate = useNavigate();
 
   const Logout = async () => {
@@ -21,6 +23,14 @@ const Navbar = () => {
     }
   };
 
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const closeDropdown = () => {
+    setIsDropdownOpen(false);
+  };
+
   return (
     <>
       <div className="navbar bg-gray-600 sticky top-0 z-20">
@@ -35,6 +45,7 @@ const Navbar = () => {
               tabIndex={0}
               role="button"
               className="btn btn-ghost btn-circle avatar"
+              onClick={toggleDropdown} // Toggle dropdown visibility
             >
               <div className="w-10 rounded-full">
                 <img
@@ -43,24 +54,60 @@ const Navbar = () => {
                 />
               </div>
             </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content bg-gray-900 rounded-box z-[1] mt-3 w-52 p-2 shadow text-white"
-            >
-              <li>
-                <Link to="/profile" className="justify-between">
-                  Profile
-                </Link>
-              </li>
-              <li>
-                <Link to="#">Settings</Link>
-              </li>
-              <li>
-                <button onClick={Logout} className="w-full text-left">
-                  Logout
-                </button>
-              </li>
-            </ul>
+            {isDropdownOpen && ( // Only show the dropdown if it's open
+              <ul
+                tabIndex={0}
+                className="menu menu-sm dropdown-content bg-gray-500 rounded-box z-[1] mt-3 w-52 p-2 shadow text-white"
+              >
+                <li>
+                  <Link
+                    to="/profile"
+                    className="justify-between hover:bg-blue-900 hover:text-white p-2 rounded"
+                    onClick={closeDropdown}
+                  >
+                    Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/connection"
+                    className="justify-between hover:bg-gray-700 hover:text-blue p-2 rounded"
+                    onClick={closeDropdown}
+                  >
+                    Connections
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/pending"
+                    className="justify-between hover:bg-gray-700 hover:text-blue p-2 rounded"
+                    onClick={closeDropdown}
+                  >
+                    Pending
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="#"
+                    className="hover:bg-gray-700 hover:text-blue p-2 rounded"
+                    onClick={closeDropdown}
+                  >
+                    Settings
+                  </Link>
+                </li>
+                <li>
+                  <button
+                    onClick={() => {
+                      Logout();
+                      closeDropdown();
+                    }}
+                    className="w-full text-left hover:bg-gray-700 hover:text-blue p-2 rounded"
+                  >
+                    Logout
+                  </button>
+                </li>
+              </ul>
+            )}
           </div>
         </div>
       </div>
