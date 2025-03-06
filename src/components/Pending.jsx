@@ -15,7 +15,7 @@ const Pending = () => {
   const fetchData = async () => {
     try {
       const res = await fetch(
-        "http://localhost:3000/api/connection/allpendingrequest",
+        "https://tinder-xgew.onrender.com/api/connection/allpendingrequest",
         {
           method: "GET",
           credentials: "include", // Necessary to send cookies
@@ -32,7 +32,7 @@ const Pending = () => {
     try {
       console.log(status + " " + connectionId);
       const res = await fetch(
-        `http://localhost:3000/api/connection/review/${status}/${connectionId}`,
+        `https://tinder-xgew.onrender.com/api/connection/review/${status}/${connectionId}`,
         {
           method: "POST",
           headers: {

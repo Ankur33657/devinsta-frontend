@@ -13,7 +13,7 @@ const Connection = () => {
   const fetchData = async () => {
     try {
       const res = await fetch(
-        "http://localhost:3000/api/connection/viewallconnection",
+        "https://tinder-xgew.onrender.com/api/connection/viewallconnection",
         {
           method: "GET",
           credentials: "include", // Necessary to send cookies
@@ -21,7 +21,6 @@ const Connection = () => {
       );
       const json = await res.json();
       setUsers(json);
-      console.log(json);
     } catch (err) {
       console.log(err.message);
     }

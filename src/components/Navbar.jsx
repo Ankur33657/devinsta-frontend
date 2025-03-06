@@ -7,7 +7,7 @@ const Navbar = () => {
 
   const Logout = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/logout", {
+      const res = await fetch("https://tinder-xgew.onrender.com/api/logout", {
         method: "GET",
         credentials: "include", // Necessary to send cookies
       });

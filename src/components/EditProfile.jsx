@@ -28,7 +28,7 @@ const EditProfile = () => {
         dob: dob,
         image1: image1,
       };
-      const response = await fetch("http://localhost:3000/api/profile/edit", {
+      const response = await fetch("https://tinder-xgew.onrender.com/api/profile/edit", {
         method: "PATCH",
         credentials: "include", // Ensures cookies are sent if applicable
         headers: {

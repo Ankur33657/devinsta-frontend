@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import { useAuth0 } from "@auth0/auth0-react";
 const Login = () => {
+  const { loginWithRedirect } = useAuth0();
   const navigate = useNavigate();
   const [emailId, setEmail] = useState("test1@gmail.com");
   const [password, setPassword] = useState("Test123@");
@@ -9,7 +10,7 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:3000/api/login", {
+      const res = await fetch("https://tinder-xgew.onrender.com/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -74,6 +75,10 @@ const Login = () => {
             >
               New to dev? Create an account
             </Link>
+            <button onClick={() => loginWithRedirect()}>
+              {/* onClick={() => loginWithRedirect()}*/}
+              signup with google
+            </button>
           </div>
         </div>
       </div>
