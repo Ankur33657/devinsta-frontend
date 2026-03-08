@@ -1,5 +1,5 @@
 import io from "socket.io-client";
 const CreateSocketConnection = () => {
-  return io("https://tinder-xgew.onrender.com");
+  return io(process.env.BACKENT_URL);
 };
 export default CreateSocketConnection;

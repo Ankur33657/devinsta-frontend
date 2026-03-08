@@ -7,7 +7,7 @@ const Navbar = () => {
 
   const Logout = async () => {
     try {
-      const res = await fetch("https://tinder-xgew.onrender.com/api/logout", {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/logout`, {
         method: "GET",
         credentials: "include", // Necessary to send cookies
       });

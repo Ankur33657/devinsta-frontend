@@ -55,7 +55,7 @@ const Chat = () => {
   // Fetch the currently logged-in user
   const fetchUser = async () => {
     try {
-      const res = await fetch("https://tinder-xgew.onrender.com/api/profile", {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/profile`, {
         method: "GET",
         credentials: "include",
       });
@@ -73,7 +73,7 @@ const Chat = () => {
     try {
       if (!fromUserId || !toUserId) return; // Ensure both IDs are available
 
-      const res = await fetch(`https://tinder-xgew.onrender.com/api/connection/chat`, {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/connection/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

@@ -14,7 +14,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("https://tinder-xgew.onrender.com/api/profile", {
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/profile`, {
           method: "GET",
           credentials: "include", // Necessary to send cookies
         });
@@ -34,7 +34,7 @@ const Profile = () => {
 
   const connection = async () => {
     try {
-      const res = await fetch("https://tinder-xgew.onrender.com/api/allcountconnection", {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/allcountconnection`, {
         method: "GET",
         credentials: "include", // Necessary to send cookies
       });

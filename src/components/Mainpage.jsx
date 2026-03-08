@@ -10,7 +10,7 @@ const Mainpage = () => {
 
   const feed = async () => {
     try {
-      const res = await fetch("https://tinder-xgew.onrender.com/api/feed", {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/feed`, {
         method: "GET",
         credentials: "include", // Necessary to send cookies
       });
@@ -30,7 +30,7 @@ const Mainpage = () => {
       const status = msg;
       const toUser = data[idx]?._id;
       const response = await fetch(
-        `https://tinder-xgew.onrender.com/api/connection/request/${status}/${toUser}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/connection/request/${status}/${toUser}`,
         {
           method: "POST",
           headers: {

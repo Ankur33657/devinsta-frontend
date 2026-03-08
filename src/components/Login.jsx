@@ -4,13 +4,14 @@ import { useAuth0 } from "@auth0/auth0-react";
 const Login = () => {
   const { loginWithRedirect } = useAuth0();
   const navigate = useNavigate();
-  const [emailId, setEmail] = useState("test1@gmail.com");
+  const [emailId, setEmail] = useState("test6@gmail.com");
   const [password, setPassword] = useState("Test123@");
   const [error, setError] = useState("");
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("https://tinder-xgew.onrender.com/api/login", {
+      console.log("Calling API:", `${import.meta.env.VITE_BACKEND_URL}/api/login`);
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

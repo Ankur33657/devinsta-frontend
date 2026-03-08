@@ -16,7 +16,7 @@ const Signup = () => {
       password: password,
     };
     try {
-      const response = await fetch("https://tinder-xgew.onrender.com/api/signup", {
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

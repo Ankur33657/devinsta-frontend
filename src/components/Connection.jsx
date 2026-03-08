@@ -13,7 +13,7 @@ const Connection = () => {
   const fetchData = async () => {
     try {
       const res = await fetch(
-        "https://tinder-xgew.onrender.com/api/connection/viewallconnection",
+        `${import.meta.env.VITE_BACKEND_URL}/api/connection/viewallconnection`,
         {
           method: "GET",
           credentials: "include", // Necessary to send cookies
