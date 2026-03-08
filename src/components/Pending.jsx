@@ -1,47 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Image1 from "../assets/image1.png";
-import Image2 from "../assets/image2.png";
-import Image3 from "../assets/image3.png";
-import Image4 from "../assets/image4.png";
+
 import { motion, AnimatePresence } from "framer-motion";
-import { useNavigate } from "react-router-dom";
 import { Clock } from "lucide-react";
-const MOCK_PENDING_REQUESTS = [
-  {
-    id: 1,
-    name: "Ankur Singh",
-    username: "@ankur",
-    avatar: "https://picsum.photos/seed/ankur/100/100",
-  },
-  {
-    id: 2,
-    name: "Priya Das",
-    username: "@priya_dev",
-    avatar: "https://picsum.photos/seed/priya/100/100",
-  },
-  {
-    id: 3,
-    name: "David Miller",
-    username: "@davidm",
-    avatar: "https://picsum.photos/seed/david/100/100",
-  },
-  {
-    id: 4,
-    name: "Yuki Tanaka",
-    username: "@yuki_t",
-    avatar: "https://picsum.photos/seed/yuki/100/100",
-  },
-];
+
 const Pending = () => {
   const [users, setUsers] = useState(null);
-
-  const [requests, setRequests] = useState(MOCK_PENDING_REQUESTS);
-
-  const handleAction = (id) => {
-    setRequests(requests.filter((req) => req.id !== id));
-  };
-
-  const navigate = useNavigate();
   useEffect(() => {
     fetchData();
   }, []);
@@ -85,62 +48,6 @@ const Pending = () => {
     }
   };
   return (
-    // <div className="flex flex-col items-center min-h-screen bg-gray-900 py-3">
-    //   <div className="w-full max-w-md bg-gray-800 shadow-lg rounded-lg p-4">
-    //     <h1 className="text-gray-200 text-lg font-semibold mb-3">
-    //       Pending Requests
-    //     </h1>
-    //     {users &&
-    //       users.map((user, index) => (
-    //         <div
-    //           key={index}
-    //           className="flex items-center justify-between p-5 my-3 bg-gray-700 rounded-lg hover:bg-gray-600 transition duration-200"
-    //         >
-    //           {/* Profile Section */}
-    //           <div className="flex items-center gap-4">
-    //             <div
-    //               className={`relative w-14 h-14 rounded-full overflow-hidden ${
-    //                 user.story ? "border-2 border-pink-500" : ""
-    //               }`}
-    //             >
-    //               <img
-    //                 src={user.fromUser.image1}
-    //                 alt={user.fromUser.firstName}
-    //                 className="w-full h-full object-cover"
-    //               />
-    //             </div>
-    //             <div>
-    //               <div className="flex items-center gap-1">
-    //                 <span className="font-semibold text-gray-200">
-    //                   {user.fromUser.firstName}
-    //                 </span>
-    //                 {/* {user.verified && <span className="text-blue-500">✔</span>} */}
-    //               </div>
-    //               <span className="text-gray-400 text-sm">
-    //                 {user.fromUser.firstName}
-    //               </span>
-    //             </div>
-    //           </div>
-
-    //           {/* Buttons Section */}
-    //           <div className="flex gap-3">
-    //             <button
-    //               className="btn btn-success btn-xs"
-    //               onClick={() => handleRequest("accepted", user.connectionId)}
-    //             >
-    //               Accept
-    //             </button>
-    //             <button
-    //               className="btn btn-error btn-xs"
-    //               onClick={() => handleRequest("rejected", user.connectionId)}
-    //             >
-    //               Reject
-    //             </button>
-    //           </div>
-    //         </div>
-    //       ))}
-    //   </div>
-    // </div>
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -150,7 +57,7 @@ const Pending = () => {
         <div className="p-6 border-b border-white/5">
           <h2 className="text-xl font-bold text-white">Pending Requests</h2>
           <p className="text-xs text-slate-500 mt-1 uppercase tracking-widest font-semibold">
-            {requests.length} {requests.length === 1 ? "Request" : "Requests"}{" "}
+            {users?.length} {users?.length <= 1 ? "Request" : "Requests"}{" "}
             Waiting
           </p>
         </div>
@@ -162,8 +69,12 @@ const Pending = () => {
                 <RequestCard
                   key={request.id}
                   request={request}
-                  onAccept={() => handleAction(request.id)}
-                  onReject={() => handleAction(request.id)}
+                  onAccept={() =>
+                    handleRequest("accepted", request.connectionId)
+                  }
+                  onReject={() =>
+                    handleRequest("rejected", request.connectionId)
+                  }
                 />
               ))
             ) : (
@@ -233,8 +144,6 @@ function RequestCard(props) {
           Accept
         </button>
       </div>
-
-      {/* Hover Glow */}
       <div className="absolute inset-0 bg-emerald-500/0 group-hover:bg-emerald-500/5 rounded-xl transition-colors -z-10" />
     </motion.div>
   );

@@ -1,18 +1,21 @@
-import React, { useContext, useEffect } from "react";
 import Navbar from "./Navbar";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Footer from "./Footer";
 
 const Mainbody = () => {
+  const location = useLocation();
+  const isAuthPage =
+    location.pathname === "/login" || location.pathname === "/signup";
+
   return (
     <>
       <div className="flex flex-col h-screen bg-[#030303]">
-        <Navbar />
-        <main className="flex-grow overflow-auto">
+        {!isAuthPage && <Navbar />}
+        <main className={`flex-grow overflow-auto`}>
           <Outlet />
         </main>
 
-        <Footer />
+        {!isAuthPage && <Footer />}
       </div>
     </>
   );

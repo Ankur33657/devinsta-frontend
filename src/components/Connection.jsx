@@ -75,7 +75,7 @@ const Connection = () => {
       </div>
 
       <div
-        className={`flex-grow flex flex-col bg-[#050505] overflow-hidden relative ${!isMobileChatOpen && !selectedUserId ? "hidden md:flex" : "flex"}`}
+        className={`flex-grow flex flex-col bg-[#050505] overflow-hidden relative ${!isMobileChatOpen ? "hidden md:flex" : "flex"}`}
       >
         {isMobileChatOpen && (
           <button

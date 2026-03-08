@@ -35,7 +35,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex items-center justify-center m-5 p-2 bg-gray-900 min-h-screen">
+    <div className="flex items-center justify-center p-2 bg-gray-900 min-h-screen">
       <div className="card bg-gray-800 w-96 shadow-xl">
         <div className="card-body text-white">
           <h2 className="card-title font-medium">Signup</h2>

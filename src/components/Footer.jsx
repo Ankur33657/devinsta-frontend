@@ -1,21 +1,4 @@
-import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  User,
-  Users,
-  Clock,
-  Settings,
-  LogOut,
-  Menu,
-  X,
-  Heart,
-  XCircle,
-  Twitter,
-  Youtube,
-  Facebook,
-  Code2,
-  Github,
-} from "lucide-react";
+import { Twitter, Youtube, Facebook, Code2 } from "lucide-react";
 const Footer = () => {
   return (
     <footer className="glass-dark border-t border-white/5 py-3 px-4 w-full hidden md:block">
