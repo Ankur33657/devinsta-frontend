@@ -14,12 +14,13 @@ const Chat = () => {
     fetchUser();
   }, []);
 
-  // Fetch Messages when fromUserId changes
+  // Fetch Messages when fromUserId or toUserId changes
   useEffect(() => {
-    // if (fromUserId) {
-    Messages();
-    // }
-  }); // Fetch messages only when fromUserId is set
+    if (fromUserId) {
+      Messages();
+    }
+  }, [fromUserId, toUserId]); // added dependency array here
+
 
   // Handle socket connection and incoming messages
   useEffect(() => {

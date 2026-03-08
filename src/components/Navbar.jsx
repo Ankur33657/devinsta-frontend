@@ -36,7 +36,7 @@ const Navbar = () => {
       <div className="navbar bg-gray-600 sticky top-0 z-20">
         <div className="flex-1">
           <Link to="/" className="btn btn-ghost text-xl text-white">
-            daisyUI
+           DevInsta
           </Link>
         </div>
         <div className="flex-none gap-2">
