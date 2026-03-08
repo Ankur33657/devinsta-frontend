@@ -1,22 +1,15 @@
 @import "tailwindcss";
+
 @theme {
     --color-glass-dark: rgba(9, 9, 11, 0.8);
     --color-glass-border: rgba(255, 255, 255, 0.05);
 }
 
-@layer utilities {
-    .glass-dark {
-        background-color: var(--color-glass-dark);
-        backdrop-filter: blur(12px);
-        border: 1px solid var(--color-glass-border);
-    }
-}
 
 body {
-    @apply bg-[#030303] text-white overflow-hidden;
+    @apply bg-[#030303] text-white;
 }
 
-/* Custom Scrollbar */
 ::-webkit-scrollbar {
     width: 6px;
 }
@@ -32,4 +25,26 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: rgba(255, 255, 255, 0.2);
+}
+.input-modern {
+    @apply w-full bg-[#111827]/70 border border-white/10 rounded-xl px-4 py-3 text-slate-200 placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/40;
+}
+
+.label-modern {
+    @apply text-xs font-semibold text-slate-500 uppercase tracking-widest;
+}
+
+.btn-gradient {
+    @apply flex items-center gap-2 px-8 py-2.5 bg-gradient-to-r from-indigo-500 to-emerald-500 text-white rounded-xl font-semibold text-sm shadow-lg shadow-emerald-500/20 hover:scale-105 transition;
+}
+
+.glass-dark {
+    background-color: rgba(11, 15, 25, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+
+    box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.03),
+        0 30px 80px rgba(0, 0, 0, 0.8);
 }

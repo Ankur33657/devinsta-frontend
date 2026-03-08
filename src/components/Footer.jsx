@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 const Footer = () => {
   return (
-    <footer className="glass-dark border-t border-white/5 py-3 px-4 w-full">
+    <footer className="glass-dark border-t border-white/5 py-3 px-4 w-full hidden md:block">
       <div className="max-w-7xl mx-auto">
         {/* Top Section */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
@@ -64,20 +64,6 @@ const Footer = () => {
 
             <a className="w-8 h-8 rounded-md bg-white/5 flex items-center justify-center hover:bg-emerald-500/10 hover:text-emerald-400 border border-white/5">
               <Facebook size={16} />
-            </a>
-          </div>
-        </div>
-
-        {/* Bottom Section */}
-        <div className="mt-3 pt-3 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-2">
-          <p className="text-[11px] text-slate-500">© 2026 DevInsta Inc.</p>
-
-          <div className="flex gap-4 text-[11px] text-slate-500">
-            <a href="#" className="hover:text-white transition-colors">
-              Privacy
-            </a>
-            <a href="#" className="hover:text-white transition-colors">
-              Terms
             </a>
           </div>
         </div>

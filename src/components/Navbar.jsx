@@ -19,6 +19,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 
 const NAV_ITEMS = [
+  { label: "Home", icon: User, href: "/" },
   { label: "Profile", icon: User, href: "/profile" },
   { label: "Connections", icon: Users, href: "/connection" },
   { label: "Pending", icon: Clock, href: "/pending" },
@@ -78,16 +79,17 @@ const Navbar = () => {
               ))}
             </div>
             <div className="flex items-center gap-4">
-              <div className="dropdown dropdown-end !hidden md:!block">
+              <div className="dropdown dropdown-end hidden md:block">
                 <div
                   tabIndex={0}
                   role="button"
                   className="avatar hover:ring-2 hover:ring-emerald-400 rounded-full"
                 >
-                  <div className="w-10 rounded-full ring ring-white/10 ring-offset-base-100 ring-offset-2">
+                  <div className="w-10 h-10 rounded-full ring ring-white/10 ring-offset-base-100 ring-offset-2 overflow-hidden">
                     <img
                       src="https://picsum.photos/seed/dev-avatar/100/100"
                       alt="User Avatar"
+                      className="w-full h-full object-cover rounded-full"
                       referrerPolicy="no-referrer"
                     />
                   </div>

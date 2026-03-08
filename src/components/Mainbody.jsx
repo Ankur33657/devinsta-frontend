@@ -8,9 +8,10 @@ const Mainbody = () => {
     <>
       <div className="flex flex-col h-screen bg-[#030303]">
         <Navbar />
-        <main className="flex-grow overflow-y-auto">
+        <main className="flex-grow overflow-auto">
           <Outlet />
         </main>
+
         <Footer />
       </div>
     </>
