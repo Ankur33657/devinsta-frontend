@@ -6,10 +6,11 @@ import Footer from "./Footer";
 const Mainbody = () => {
   return (
     <>
-      <div className="bg-gray-900">
+      <div className="flex flex-col h-screen bg-[#030303]">
         <Navbar />
-
-        <Outlet />
+        <main className="flex-grow overflow-y-auto">
+          <Outlet />
+        </main>
         <Footer />
       </div>
     </>

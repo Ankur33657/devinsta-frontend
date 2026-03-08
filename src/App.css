@@ -1,1 +1,35 @@
 @import "tailwindcss";
+@theme {
+    --color-glass-dark: rgba(9, 9, 11, 0.8);
+    --color-glass-border: rgba(255, 255, 255, 0.05);
+}
+
+@layer utilities {
+    .glass-dark {
+        background-color: var(--color-glass-dark);
+        backdrop-filter: blur(12px);
+        border: 1px solid var(--color-glass-border);
+    }
+}
+
+body {
+    @apply bg-[#030303] text-white overflow-hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
